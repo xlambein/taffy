@@ -19,8 +19,8 @@ use crate::{data::NodeData, error};
 /// A function type that can be used in a [`MeasureFunc`]
 ///
 /// This trait is automatically implemented for all types (including closures) that define a function with the appropriate type signature.
-pub trait Measurable: Send + Sync + Fn(Size<Option<f32>>, Size<AvailableSpace>) -> Size<f32> {}
-impl<F: Send + Sync + Fn(Size<Option<f32>>, Size<AvailableSpace>) -> Size<f32>> Measurable for F {}
+pub trait Measurable: Fn(Size<Option<f32>>, Size<AvailableSpace>) -> Size<f32> {}
+impl<F: Fn(Size<Option<f32>>, Size<AvailableSpace>) -> Size<f32>> Measurable for F {}
 
 /// A function that can be used to compute the intrinsic size of a node
 pub enum MeasureFunc {
